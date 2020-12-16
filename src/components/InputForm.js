@@ -27,6 +27,7 @@ class InputForm extends Component{
   };
 
   handleFormSubmit = event => {
+
     event.preventDefault();
     const data = {
       inpEmbarque : this.state.inpEmbarque,
@@ -39,7 +40,7 @@ class InputForm extends Component{
       inpCabina : this.state.inpCabina
     };
     this.setState({ respSobrevivio : null });
-    console.log(JSON.stringify(data));
+
     const options = {
       method: "POST",
       headers: {
@@ -48,8 +49,8 @@ class InputForm extends Component{
       body: JSON.stringify(data)
     };
 
-    //fetch("https://titanic-pdr.wl.r.appspot.com", options).then(response => response.json())
-    fetch("http://127.0.0.1:8000", options).then(response => response.json())
+
+    fetch(process.env.REACT_APP_BACKEND_URL, options).then(response => response.json())
     .then((data) => {
       this.setState({ inpParch : 0,
         inpSibSp : 0,
@@ -127,11 +128,11 @@ class InputForm extends Component{
               </tr>
               <tr>
                 <td><label htmlFor="inpSibSp">Número de esposo/hermanos</label></td>
-                <td><input type="number" name="inpSibSp" id={'inpSibSp'} value={this.state.inpSibSp} onChange={e => this.handleChange(e)}/></td>
+                <td><input type="number" name="inpSibSp" id={'inpSibSp'} value={this.state.inpSibSp} onChange={e => this.handleChange(e)} min={0}/></td>
               </tr>
               <tr>
                 <td><label htmlFor="inpParch">Número de padres/hijos</label></td>
-                <td><input type="number" name="inpParch" id={'inpParch'} value={this.state.inpParch} onChange={e => this.handleChange(e)}/></td>
+                <td><input type="number" name="inpParch" id={'inpParch'} value={this.state.inpParch} onChange={e => this.handleChange(e)} min={0}/></td>
               </tr>
               <tr>
                 <td><button type={'reset'}>Limpiar datos</button></td>

@@ -2,13 +2,10 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 3rem;
-  pointer-events: none;
-}
+
 
 .App-header {
-  background-color: #D84C4B;
+  background-color: #000000;
   min-height: 10vh;
   display: flex;
   flex-direction: row;

@@ -12,11 +12,17 @@ jobs:
       - run:
           name: Build React App
           command: npm run build
+      - persist_to_workspace:
+          root: .
+          paths: [build]
   deploy:
     docker:
       - image: google/cloud-sdk
     working_directory: ~/repo
     steps:
+      - checkout
+      - attach_workspace:
+          at: .
       - run: chmod +x ./app.yaml.sh
       - run:
           name: Copy across app.yaml config
@@ -30,3 +36,11 @@ jobs:
       - run:
           name: Deploying to App Engine
           command: gcloud app deploy app.yaml --version 1
+workflows:
+  version: 2
+  deploy_frontend:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build

@@ -9,7 +9,7 @@ handlers:
   - url: /
     static_dir: build
     http_headers:
-      Access-Control-Allow-Origin: "*"
+      Access-Control-Allow-Origin: \"*\"
   - url: /.*
     script: auto
     secure: always

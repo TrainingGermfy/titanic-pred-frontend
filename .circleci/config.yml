@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies with NPM
+          command: npm install
+      - run:
+          name: Build React App
+          command: npm run build
+  deploy:
+    docker:
+      - image: google/cloud-sdk
+    working_directory: ~/repo
+    steps:
+      - run: chmod +x ./app.yaml.sh
+      - run:
+          name: Copy across app.yaml config
+          command: ./app.yaml.sh > ./app.yaml
+      - run:
+          name: Set up gcloud config
+          command: |
+            echo $GCLOUD_SERVICE_KEY | base64 --decode | gcloud auth activate-service-account --key-file=-
+            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+      - run: cat ./app.yaml
+      - run:
+          name: Deploying to App Engine
+          command: gcloud app deploy app.yaml --version 1

@@ -49,8 +49,7 @@ class InputForm extends Component{
       body: JSON.stringify(data)
     };
 
-
-    fetch(process.env.REACT_APP_BACKEND_URL, options).then(response => response.json())
+    fetch('https://titanic-pdr.wl.r.appspot.com', options).then(response => response.json())
     .then((data) => {
       this.setState({ inpParch : 0,
         inpSibSp : 0,

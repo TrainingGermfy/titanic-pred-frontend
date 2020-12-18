@@ -1,25 +1,51 @@
+body {
+
+}
+
 .App {
   text-align: center;
+  /*display: grid;*/
+  /*grid-template-columns: 1fr 1fr 1fr;*/
+  /*grid-template-rows: repeat(1, auto);*/
+  /*grid-template-areas: "logo pagehead pagehead" "navi mains navi";*/
+  /*column-gap: 1rem;*/
+  /*row-gap: 1rem;*/
 }
 
 
 
 .App-header {
   background-color: #000000;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
+  /*grid-row: 1;*/
+  /*grid-column: 1 / span 3;*/
+  /*display: flex;*/
+}
+
+.App-logo{
+  /*grid-area: logo;*/
+  height: 3rem;
+  /*grid-column: 1;*/
+}
+
+.App-header > div {
+  /*grid-area: pagehead;*/
+  /*grid-column: 2;*/
+
 }
 
 .App-link {
   color: #61dafb;
 }
 
-.InputFrom {
-  align-content: center;
+.Input-form {
+  /*grid-area: mains;*/
+  align-items: center;
+  /*grid-row: 2;*/
+  /*grid-column: 2 / span 3;*/
+  justify-content: space-evenly;
 }
 

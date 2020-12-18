@@ -4,7 +4,7 @@ import InputForm from './components/InputForm';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container-fluid">
       <Header></Header>
       <InputForm></InputForm>
     </div>
